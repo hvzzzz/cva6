@@ -69,6 +69,36 @@
       local-mac-address = [00 18 3e 02 e3 7f]; // This needs to change if more than one GenesysII on a VLAN
       reg = <0x0 0x30000000 0x0 0x8000>;
     };
+    uart@10000000 {
+      compatible = "xlnx,axi-uart16550-1.01.a", "xlnx,xps-uart16550-2.00.a", "ns16550";
+      reg = <0x0 0x10000000 0x0 0x1000>;
+      clock-frequency = <25000000>;
+      current-speed = <115200>;
+      interrupt-parent = <&PLIC0>;
+      interrupts = <1>;
+      reg-shift = <2>; // regs are spaced on 32 bit boundary
+      reg-io-width = <4>; // only 32-bit access are supported
+    };
+    xps-spi@20000000 {
+      compatible = "xlnx,xps-spi-2.00.b", "xlnx,xps-spi-2.00.a";
+      #address-cells = <1>;
+      #size-cells = <0>;
+      interrupt-parent = <&PLIC0>;
+      interrupts = < 2 2 >;
+      reg = < 0x0 0x20000000 0x0 0x1000 >;
+      xlnx,family = "zynq7";
+      xlnx,fifo-exist = <0x1>;
+      xlnx,num-ss-bits = <0x1>;
+      xlnx,num-transfer-bits = <0x8>;
+      xlnx,sck-ratio = <0x4>;
+      mmc@0 {
+        compatible = "mmc-spi-slot";
+        reg = <0>;
+        spi-max-frequency = <25000000>;
+        voltage-ranges = <3300 3300>;
+        disable-wp;
+      };
+    };
   };
 };
 // delete ethernet device if disabled
