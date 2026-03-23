@@ -29,6 +29,7 @@ package cva6_config_pkg;
   localparam CVA6ConfigVExtEn = 0;
   localparam CVA6ConfigRVZiCond = 1;
 
+  // localparam CVA6ConfigAxiIdWidth = 16;
   localparam CVA6ConfigAxiIdWidth = 4;
   localparam CVA6ConfigAxiAddrWidth = 64;
   localparam CVA6ConfigAxiDataWidth = 64;
@@ -37,10 +38,10 @@ package cva6_config_pkg;
   localparam CVA6ConfigDataUserEn = 0;
   localparam CVA6ConfigDataUserWidth = CVA6ConfigXlen;
 
-  localparam CVA6ConfigIcacheByteSize = 16384;
+  localparam CVA6ConfigIcacheByteSize = 4096;
   localparam CVA6ConfigIcacheSetAssoc = 4;
   localparam CVA6ConfigIcacheLineWidth = 128;
-  localparam CVA6ConfigDcacheByteSize = 16384;
+  localparam CVA6ConfigDcacheByteSize = 4096;
   localparam CVA6ConfigDcacheSetAssoc = 4;
   localparam CVA6ConfigDcacheLineWidth = 128;
 
@@ -49,6 +50,7 @@ package cva6_config_pkg;
 
   localparam CVA6ConfigDcacheIdWidth = 1;
   localparam CVA6ConfigMemTidWidth = 2;
+  // localparam CVA6ConfigMemTidWidth = 8;
 
   localparam CVA6ConfigWtDcacheWbufDepth = 8;
 
@@ -69,7 +71,8 @@ package cva6_config_pkg;
   localparam CVA6ConfigPerfCounterEn = 1;
 
   localparam config_pkg::cache_type_t CVA6ConfigDcacheType = config_pkg::WT;
-//config_pkg::HPDCACHE_WT try and see what happens
+  //localparam config_pkg::cache_type_t CVA6ConfigDcacheType = config_pkg::HPDCACHE_WT;
+  //config_pkg::HPDCACHE_WT try and see what happens
   localparam CVA6ConfigMmuPresent = 1;
 
   localparam CVA6ConfigRvfiTrace = 0;
@@ -81,7 +84,7 @@ package cva6_config_pkg;
       FpgaAlteraEn: bit'(0),  // for Altera (only)
       TechnoCut: bit'(0),
       SuperscalarEn: bit'(0),
-      NrCommitPorts: unsigned'(2),
+      NrCommitPorts: unsigned'(1),
       AxiAddrWidth: unsigned'(CVA6ConfigAxiAddrWidth),
       AxiDataWidth: unsigned'(CVA6ConfigAxiDataWidth),
       AxiIdWidth: unsigned'(CVA6ConfigAxiIdWidth),
